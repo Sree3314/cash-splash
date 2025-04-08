@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CASHSPLASH</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap');
+    
+    :root {
+      --neon-cyan: #0ff0fc;
+      --neon-pink: #ff2a6d;
+      --neon-green: #05f0a5;
+      --dark-bg: #0a0a12;
+      --darker-bg: #050508;
+    }
+    
+    body {
+      background-color: var(--dark-bg);
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      text-align: center;
+      padding: 0;
+     margin:0;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(15, 240, 252, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(255, 42, 109, 0.05) 0%, transparent 25%),
+        linear-gradient(to bottom, var(--darker-bg), var(--dark-bg));
+      background-attachment: fixed;
+      
+    }
+    
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      background: rgba(10, 10, 18, 0.7);
+      box-shadow: 
+        0 0 15px rgba(15, 240, 252, 0.2),
+        0 0 30px rgba(255, 42, 109, 0.1);
+      backdrop-filter: blur(8px);
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink), var(--neon-green));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 2.8rem;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+    
+    .currency-selectors {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 40px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    select {
+      padding: 14px 24px;
+      font-size: 16px;
+      background-color: rgba(20, 20, 30, 0.8);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 220px;
+      appearance: none;
+      background-image: 
+        linear-gradient(45deg, transparent 50%, var(--neon-green) 50%),
+        linear-gradient(135deg, var(--neon-green) 50%, transparent 50%);
+      background-position:
+        calc(100% - 20px) 50%,
+        calc(100% - 15px) 50%;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+    }
+    
+    select:hover {
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 15px rgba(255, 42, 109, 0.3);
+    }
+    
+    select:focus {
+      outline: none;
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 20px rgba(15, 240, 252, 0.4);
+    }
+    
+    .arrow {
+      font-size: 28px;
+      background: linear-gradient(90deg, var(--neon-pink), var(--neon-green));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: bold;
+    }
+    
+    .swap-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: var(--neon-cyan);
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-left: 20px;
+    }
+    
+    .swap-button:hover {
+      background-color: var(--neon-pink);
+    }
+    
+    table {
+      margin: 30px auto;
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: rgba(20, 20, 30, 0.6);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(5, 240, 165, 0.1);
+      position: relative;
+    }
+    
+    table::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink), var(--neon-green));
+      z-index: -1;
+      border-radius: 14px;
+      animation: rotateGradient 8s linear infinite;
+    }
+    
+    @keyframes rotateGradient {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+    
+    th, td {
+      padding: 16px 24px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    th {
+      background: linear-gradient(to right, rgba(15, 240, 252, 0.1), rgba(255, 42, 109, 0.1));
+      color: var(--neon-cyan);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+    
+    tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+    
+    tr:hover {
+      background-color: rgba(15, 240, 252, 0.05);
+    }
+    
+    .company-name {
+      font-weight: 500;
+      background: linear-gradient(90deg, var(--neon-green), var(--neon-green));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .rate {
+      color: var(--neon-cyan);
+    }
+    
+    .amount {
+      color: var(--neon-green);
+      font-weight: 700;
+    }
+    
+    .warning {
+      color: var(--neon-pink);
+      margin-top: 20px;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    
+    .footer {
+      margin-top: 40px;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+        margin: 15px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .currency-selectors {
+        flex-direction: column;
+      }
+      
+      select {
+        width: 100%;
+      }
+      
+      th, td {
+        padding: 12px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CASHSPLASH</h1>
+    
+    <div class="currency-selectors">
+      <select id="fromCurrency"></select>
+      <div class="arrow">→</div>
+      <select id="toCurrency"></select>
+      <button class="swap-button" onclick="swapCurrencies()">Swap</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Exchange Rate</th>
+          <th>Fees</th>
+          <th>Amount Received (1000 units)</th>
+        </tr>
+      </thead>
+      <tbody id="resultBody">
+               <tr><td colspan="4" style="text-align: center; color: rgba(255,255,255,0.6);">Select currencies to compare exchange rates</td></tr>
+      </tbody>
+    </table>
+    
+    <div id="warning" class="warning"></div>
+    
+    <div class="footer">
+     
+    </div>
+  </div>
+
+  <script>
+    const currencies = [
+      { code: "USD", name: "United States Dollar" },
+      { code: "EUR", name: "Euro" },
+      { code: "GBP", name: "British Pound" },
+      { code: "INR", name: "Indian Rupee" },
+      { code: "JPY", name: "Japanese Yen" },
+      { code: "CAD", name: "Canadian Dollar" },
+      { code: "AUD", name: "Australian Dollar" },
+      { code: "CNY", name: "Chinese Yuan" },
+      { code: "CHF", name: "Swiss Franc" },
+      { code: "SGD", name: "Singapore Dollar" }
+    ];
+
+    // Base exchange rates (simplified for demo)
+    const baseRates = {
+      "USD": 1,
+      "EUR": 0.91,
+      "GBP": 0.79,
+      "INR": 83.3,
+      "JPY": 151.5,
+      "CAD": 1.36,
+      "AUD": 1.52,
+      "CNY": 7.23,
+      "CHF": 0.9,
+      "SGD": 1.35
+    };
+
+    // Company data with neon colors
+    const companies = [
+      { name: "NeonPay", feePercent: 0.5, rateAdjustment: 0.99 },
+      { name: "CyberExchange", feePercent: 0.7, rateAdjustment: 0.98 },
+      { name: "Quantum Transfer", feePercent: 2.5, rateAdjustment: 0.95 },
+      { name: "GlowRemit", feePercent: 0.3, rateAdjustment: 0.992 },
+      { name: "SynthWire", feePercent: 1.2, rateAdjustment: 0.97 },
+      { name: "PixelTransfer", feePercent: 0.8, rateAdjustment: 0.98 },
+      { name: "Matrix Exchange", feePercent: 1.0, rateAdjustment: 0.975 }
+    ];
+
+    const fromCurrency = document.getElementById("fromCurrency");
+    const toCurrency = document.getElementById("toCurrency");
+    const resultBody = document.getElementById("resultBody");
+    const warningDiv = document.getElementById("warning");
+
+    // Populate dropdowns with full currency names
+    currencies.forEach(curr => {
+      fromCurrency.innerHTML += `<option value="${curr.code}">${curr.code} - ${curr.name}</option>`;
+      toCurrency.innerHTML += `<option value="${curr.code}">${curr.code} - ${curr.name}</option>`;
+    });
+
+    function calculateExchangeRate(from, to) {
+      // Calculate the base rate (convert from currency to USD first, then to target currency)
+      const rate = (1 / baseRates[from]) * baseRates[to];
+      return rate;
+    }
+
+    function generateExchangeData(from, to) {
+      if (from === to) {
+        warningDiv.textContent = "⚠️ You're converting to the same currency. No exchange needed.";
+        return [];
+      }
+      
+      warningDiv.textContent = "";
+      const baseRate = calculateExchangeRate(from, to);
+      
+      return companies.map(company => {
+        // Calculate adjusted rate
+        const adjustedRate = baseRate * company.rateAdjustment;
+        
+        // Calculate fee (percentage of amount being sent)
+        const fee = 1000 * (company.feePercent / 100);
+        
+        return {
+          company: company.name,
+          rate: adjustedRate.toFixed(4),
+          fee: fee.toFixed(2),
+          amountReceived: ((1000 * adjustedRate) - fee).toFixed(2)
+        };
+      });
+    }
+
+    function updateTable() {
+      const from = fromCurrency.value;
+      const to = toCurrency.value;
+      
+      const data = generateExchangeData(from, to);
+
+      if (data.length === 0) {
+        resultBody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: rgba(255,255,255,0.6);">Select different currencies to compare</td></tr>';
+        return;
+      }
+
+      resultBody.innerHTML = "";
+      data.forEach(entry => {
+        resultBody.innerHTML += `
+          <tr>
+            <td class="company-name">${entry.company}</td>
+            <td class="rate">${entry.rate}</td>
+            <td>${entry.fee} ${from}</td>
+            <td class="amount">${entry.amountReceived} ${to}</td>
+          </tr>
+        `;
+      });
+    }
+
+    function swapCurrencies() {
+      const temp = fromCurrency.value;
+      fromCurrency.value = toCurrency.value;
+      toCurrency.value = temp;
+      updateTable();
+    }
+
+    fromCurrency.addEventListener("change", updateTable);
+    toCurrency.addEventListener("change", updateTable);
+
+    // Set initial values
+    fromCurrency.value = "USD";
+    toCurrency.value = "EUR";
+    updateTable();
+    window.addEventListener('load', function() {
+  if (performance.navigation.type === 1) {
+      window.location.href = 'index.html';
+  }
+});
+  </script>
+</body>
+</html>
+
+
+
